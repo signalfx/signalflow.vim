@@ -39,6 +39,7 @@ syntax match   PipelineThickArrow /=>/
 syntax match   BlockInputPort     /?\w\+/
 syntax match   BlockOutputPort    /!\w\+/
 
+syntax region  Comment               start="#"  end="$"  extend
 syntax region  MacroBlockPorts       start="\[" end="\]" keepend transparent matchgroup=Comment
 syntax region  MacroBlockExpressions start="{"  end="}"  keepend transparent matchgroup=Comment
 syntax region  BlockParameters       start="("  end=")"  keepend transparent matchgroup=Function
