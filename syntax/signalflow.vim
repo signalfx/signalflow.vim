@@ -13,14 +13,35 @@ endif
 syntax keyword BlockName accumulator
 syntax keyword BlockName _collector
 syntax keyword BlockName const
+syntax keyword BlockName count
+syntax keyword BlockName datapoints
 syntax keyword BlockName delta
 syntax keyword BlockName dimensionalize
+syntax keyword BlockName events
+syntax keyword BlockName extrapolate
 syntax keyword BlockName fetch
 syntax keyword BlockName find
 syntax keyword BlockName groupby
 syntax keyword BlockName id
 syntax keyword BlockName integrate
 syntax keyword BlockName math
+syntax keyword BlockName max
+syntax keyword BlockName mean
+syntax keyword BlockName min
+syntax keyword BlockName p1
+syntax keyword BlockName p2
+syntax keyword BlockName p5
+syntax keyword BlockName p10
+syntax keyword BlockName p15
+syntax keyword BlockName p20
+syntax keyword BlockName p25
+syntax keyword BlockName p50
+syntax keyword BlockName p75
+syntax keyword BlockName p85
+syntax keyword BlockName p90
+syntax keyword BlockName p95
+syntax keyword BlockName p98
+syntax keyword BlockName p99
 syntax keyword BlockName print
 syntax keyword BlockName publish
 syntax keyword BlockName random
@@ -28,18 +49,24 @@ syntax keyword BlockName rateofchange
 syntax keyword BlockName sample
 syntax keyword BlockName select
 syntax keyword BlockName seq
+syntax keyword BlockName size
 syntax keyword BlockName split
 syntax keyword BlockName stats
+syntax keyword BlockName stddev
+syntax keyword BlockName sum
 syntax keyword BlockName threshold
 syntax keyword BlockName _turnstile
+syntax keyword BlockName variance
 syntax keyword BlockName window
 
+syntax match   Annotation         /@[^:]\+/
 syntax match   PipelineThinArrow  /->/
 syntax match   PipelineThickArrow /=>/
 syntax match   BlockInputPort     /?\w\+/
 syntax match   BlockOutputPort    /!\w\+/
+syntax match   Number             /\(true\|false\)/
 
-syntax region  Comment               start="#"  end="$"  extend
+syntax region  Comment               start="//" end="$"  extend
 syntax region  MacroBlockPorts       start="\[" end="\]" keepend transparent matchgroup=Comment
 syntax region  MacroBlockExpressions start="{"  end="}"  keepend transparent matchgroup=Comment
 syntax region  BlockParameters       start="("  end=")"  keepend transparent matchgroup=Function
@@ -49,6 +76,7 @@ syntax match   BlockArg   /\([(, ]\)\@<=\w\+\(=\)\@=/   containedin=BlockParamet
 
 " Highlight group links
 let b:current_syntax = 'signalflow'
+hi def link Annotation          Operator
 hi def link BlockName           Function
 hi def link BlockArg            Label
 hi def link BlockInputPort      Type
