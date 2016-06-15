@@ -1,85 +1,86 @@
-" Copyright (C) 2015 SignalFx, Inc. All rights reserved.
-
-" SignalFx SignalFlow analytics language Vim syntax file
-" Language: SignalFlow
-" Maintainer: Maxime Petazzoni <max@signalfx.com>
+" ==============================================================================
+" File:            signalflow.vim
+" Description:     SignalFx SignalFlow Analytics v2 language Vim syntax file
+" Language:        SignalFlow
+" Maintainer:      Maxime Petazzoni <max@signalfx.com>
 " Latest Revision: 11 December 2015
+"
+" Copyright (C) 2015-2016 SignalFx, Inc. All rights reserved.
+" ==============================================================================
 
-if exists("b:current_syntaxtax")
+if exists("b:current_syntax")
   finish
 endif
 
 " All blocks
-syntax keyword BlockName accumulator
-syntax keyword BlockName _collector
-syntax keyword BlockName const
-syntax keyword BlockName count
-syntax keyword BlockName datapoints
-syntax keyword BlockName delta
-syntax keyword BlockName dimensionalize
-syntax keyword BlockName events
-syntax keyword BlockName extrapolate
-syntax keyword BlockName fetch
-syntax keyword BlockName find
-syntax keyword BlockName groupby
-syntax keyword BlockName id
-syntax keyword BlockName integrate
-syntax keyword BlockName math
-syntax keyword BlockName max
-syntax keyword BlockName mean
-syntax keyword BlockName min
-syntax keyword BlockName p1
-syntax keyword BlockName p2
-syntax keyword BlockName p5
-syntax keyword BlockName p10
-syntax keyword BlockName p15
-syntax keyword BlockName p20
-syntax keyword BlockName p25
-syntax keyword BlockName p50
-syntax keyword BlockName p75
-syntax keyword BlockName p85
-syntax keyword BlockName p90
-syntax keyword BlockName p95
-syntax keyword BlockName p98
-syntax keyword BlockName p99
-syntax keyword BlockName print
-syntax keyword BlockName publish
-syntax keyword BlockName random
-syntax keyword BlockName rateofchange
-syntax keyword BlockName sample
-syntax keyword BlockName select
-syntax keyword BlockName seq
-syntax keyword BlockName size
-syntax keyword BlockName split
-syntax keyword BlockName stats
-syntax keyword BlockName stddev
-syntax keyword BlockName sum
-syntax keyword BlockName threshold
-syntax keyword BlockName _turnstile
-syntax keyword BlockName variance
-syntax keyword BlockName window
+syntax keyword Function _collector
+syntax keyword Function _random
+syntax keyword Function _seq
+syntax keyword Function _turnstile
+syntax keyword Function abs
+syntax keyword Function accumulator
+syntax keyword Function bottom
+syntax keyword Function ciel
+syntax keyword Function const
+syntax keyword Function count
+syntax keyword Function data
+syntax keyword Function delta
+syntax keyword Function detect
+syntax keyword Function dimensionalize
+syntax keyword Function events
+syntax keyword Function extrapolate
+syntax keyword Function fetch
+syntax keyword Function filter
+syntax keyword Function find
+syntax keyword Function floor
+syntax keyword Function graphite
+syntax keyword Function groupby
+syntax keyword Function id
+syntax keyword Function integrate
+syntax keyword Function log
+syntax keyword Function log10
+syntax keyword Function map
+syntax keyword Function math
+syntax keyword Function max
+syntax keyword Function mean
+syntax keyword Function mean_plus_stddev
+syntax keyword Function median
+syntax keyword Function min
+syntax keyword Function newrelic
+syntax keyword Function percentile
+syntax keyword Function pow
+syntax keyword Function print
+syntax keyword Function publish
+syntax keyword Function random
+syntax keyword Function rateofchange
+syntax keyword Function sample
+syntax keyword Function sample_stddev
+syntax keyword Function sample_variance
+syntax keyword Function select
+syntax keyword Function size
+syntax keyword Function split
+syntax keyword Function sqrt
+syntax keyword Function stats
+syntax keyword Function stddev
+syntax keyword Function sum
+syntax keyword Function threshold
+syntax keyword Function timeshift
+syntax keyword Function top
+syntax keyword Function variance
+syntax keyword Function when
+syntax keyword Function window
 
-syntax match   Annotation         /@[^:]\+/
-syntax match   PipelineThinArrow  /->/
-syntax match   PipelineThickArrow /=>/
-syntax match   BlockInputPort     /?\w\+/
-syntax match   BlockOutputPort    /!\w\+/
-syntax match   Number             /\(true\|false\)/
+syntax keyword Keyword lambda
 
-syntax region  Comment               start="//" end="$"  extend
-syntax region  MacroBlockPorts       start="\[" end="\]" keepend transparent matchgroup=Comment
-syntax region  MacroBlockExpressions start="{"  end="}"  keepend transparent matchgroup=Comment
-syntax region  BlockParameters       start="("  end=")"  keepend transparent matchgroup=Function
-syntax region  String                start=/["']/ skip=/(\\"|\\')/ end=/["']/ extend containedin=BlockParameters
-syntax match   Number     /\(\w\)\@<![-+]\?\d\+p\?/     containedin=BlockParameters
-syntax match   BlockArg   /\([(, ]\)\@<=\w\+\(=\)\@=/   containedin=BlockParameters
+syntax region  Comment                start="#" end="$"                         extend
+syntax region  FlowBlockParameters    start="("  end=")"                        keepend transparent matchgroup=Function
+syntax region  String                 start=/["']/ skip=/(\\"|\\')/ end=/["']/  extend containedin=FlowBlockParameters
+syntax match   Annotation             /@[^:]\+/
+syntax match   Number                 /\(true\|false\)/
+syntax match   Number                 /\(\w\)\@<![-+]\?\d\+p\?/                 containedin=FlowBlockParameters
+syntax match   FlowBlockArg           /\([(,]\)\@<=[^',)]\+=\@=/                containedin=FlowBlockParameters
 
 " Highlight group links
+hi def link Annotation Operator
+hi def link FlowBlockArg PreProc
 let b:current_syntax = 'signalflow'
-hi def link Annotation          Operator
-hi def link BlockName           Function
-hi def link BlockArg            Label
-hi def link BlockInputPort      Type
-hi def link BlockOutputPort     Type
-hi def link PipelineThinArrow   Operator
-hi def link PipelineThickArrow  Operator
