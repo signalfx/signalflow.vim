@@ -27,6 +27,7 @@ syntax keyword Function data
 syntax keyword Function delta
 syntax keyword Function detect
 syntax keyword Function dimensionalize
+syntax keyword Function duration
 syntax keyword Function events
 syntax keyword Function extrapolate
 syntax keyword Function fetch
@@ -70,7 +71,16 @@ syntax keyword Function variance
 syntax keyword Function when
 syntax keyword Function window
 
+syntax keyword Keyword def
+syntax keyword Keyword elif
+syntax keyword Keyword else
+syntax keyword Keyword if
+syntax keyword Keyword is
 syntax keyword Keyword lambda
+syntax keyword Keyword not
+syntax keyword Keyword return
+
+syntax keyword Number None
 
 syntax region  Comment                start="#" end="$"                         extend
 syntax region  FlowBlockParameters    start="("  end=")"                        keepend transparent matchgroup=Function
@@ -78,7 +88,6 @@ syntax region  String                 start=/["']/ skip=/(\\"|\\')/ end=/["']/  
 syntax match   Annotation             /@[^:]\+/
 syntax match   Number                 /\(true\|false\)/
 syntax match   Number                 /\(\w\)\@<![-+]\?\d\+p\?/                 containedin=FlowBlockParameters
-syntax match   FlowBlockArg           /\([(,]\)\@<=[^',)]\+=\@=/                containedin=FlowBlockParameters
 
 " Highlight group links
 hi def link Annotation Operator
