@@ -26,11 +26,13 @@ syntax keyword Function count
 syntax keyword Function data
 syntax keyword Function delta
 syntax keyword Function detect
+syntax keyword Function dewma
 syntax keyword Function dimensionalize
 syntax keyword Function duration
 syntax keyword Function events
-syntax keyword Function extrapolate
+syntax keyword Function ewma
 syntax keyword Function fetch
+syntax keyword Function fill
 syntax keyword Function filter
 syntax keyword Function find
 syntax keyword Function floor
